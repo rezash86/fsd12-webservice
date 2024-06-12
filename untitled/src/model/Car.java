@@ -59,4 +59,8 @@ public class Car {
                 ", engineSize=" + engineSize +
                 '}';
     }
+
+    public String toDataString(){
+        return String.format("%s;%d;%.2f", this.make, this.year, this.engineSize);
+    }
 }
