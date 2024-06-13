@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.Year;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -24,7 +26,8 @@ public class Main {
             readDataFromTheFile();
 
             while (true) {
-                System.out.println("\nEnter the options: \n0.Exit \n1.Add a car \n2.List all the cars \n3.Modify the car");
+                System.out.println("\nEnter the options: \n0.Exit \n1.Add a car \n2.List all the cars " +
+                        "\n3.Modify the car \n4.Delete the car \n5.Show statistics");
 
                 int userInput = input.nextInt();
                 switch (userInput) {
@@ -39,6 +42,12 @@ public class Main {
                         break;
                     case 3:
                         modifyCars();
+                        break;
+                    case 4:
+                        deleteCar();
+                        break;
+                    case 5:
+                        showStatistics();
                         break;
                 }
 
@@ -55,6 +64,70 @@ public class Main {
         }catch (Exception exc){
             System.out.println("An exception happened " + exc.getMessage());
         }
+    }
+
+    private static void showStatistics() {
+        if (cars.isEmpty()) {
+            System.out.println(NO_CAR_EXIST);
+            return;
+        }
+
+        //the oldest car
+        Car oldestCat = cars.get(0);
+//        for (Car car : cars) {
+//            if (car.getYear() < oldestCat.getYear()) {
+//                oldestCat = car;
+//            }
+//        }
+        for(int i=0; i <cars.size() ; i++){
+            if(cars.get(i).getYear() < oldestCat.getYear() ){
+                oldestCat = cars.get(i);
+            }
+        }
+        System.out.println("the oldest car is -> " + oldestCat);
+
+        //the biggest engine size
+        Car biggestEngineSize = cars.get(0);
+        for(int i=0; i <cars.size() ; i++){
+            if(cars.get(i).getEngineSize() > biggestEngineSize.getEngineSize() ){
+                biggestEngineSize = cars.get(i);
+            }
+        }
+
+        System.out.println("the biggest engine size car is -> " + biggestEngineSize);
+
+        // avg the age
+        // 2000 ?  -> 24
+        // 1993 ?  -> 31
+        //I need to know the current year
+        int currentYear = Year.now().getValue();
+        double sumOfAge = 0.0;
+        for(Car car: cars){
+            sumOfAge += currentYear - car.getYear();
+        }
+
+        double avgAge = sumOfAge / cars.size();
+
+        System.out.printf("The average age is %.2f", avgAge);
+        System.out.println();
+    }
+
+    private static void deleteCar() {
+        try {
+            if (cars.isEmpty()) {
+                System.out.println(NO_CAR_EXIST);
+                return;
+            }
+            System.out.println("Enter the car # to delete");
+            int carNum = input.nextInt();
+            input.nextLine();
+
+//        cars.remove(carNum -1);
+            cars.remove(cars.get(carNum - 1));
+        }catch (InputMismatchException | IndexOutOfBoundsException exc){
+            System.out.println("you enter a wrong number");
+        }
+
     }
 
     private static void readDataFromTheFile() {

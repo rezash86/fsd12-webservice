@@ -1,0 +1,24 @@
+{
+  "name": "reza",
+  "age": 20,
+  "hobbies": [
+    "reading",
+    "movies",
+    "family time"
+  ],
+  "job": {
+    "company": "SAP",
+    "HireDate": 2021
+  },
+  "married": true,
+  "like-food": [
+    {
+      "country": "Iran",
+      "name": "kebab"
+    },
+    {
+      "country": "Thaiwan",
+      "name": "Pad-thai"
+    }
+  ]
+}
