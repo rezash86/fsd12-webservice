@@ -1,22 +1,22 @@
 package com.jac.demo.controller;
 
 import com.jac.demo.model.Person;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 
 //CTRL + ALT + L
 @RestController
+@RequestMapping("/person") //I needed this one to include the path for all the methods
 public class PersonController {
 
-    @GetMapping("/")
-    public String getValue() {
-        return "this is my first API !!!!";
-    }
+//    @GetMapping("/")
+//    public String getValue() {
+//        return "this is my first API !!!!";
+//    }
 
-    @GetMapping("/person")
+    @GetMapping("/")
     public Person getPerson() {
         return Person
                 .builder().firstName("Jill")
@@ -24,9 +24,7 @@ public class PersonController {
                 .build();
     }
 
-    // POST PUT DELETE
-
-    @GetMapping("/person/all")
+    @GetMapping("/all")
     public List<Person> getAll(){
         return List.of(
                 Person
@@ -35,11 +33,27 @@ public class PersonController {
                 .build(),
                 Person
                 .builder().firstName("Chris")
-                .lastName("RefField").age(22)
+                .lastName("Redfield").age(22)
                 .build(),
                 Person
                         .builder().firstName("peppa")
                         .lastName("pig").age(28)
                         .build());
+    }
+
+    @PostMapping("/")
+    public void createPerson(@RequestBody Person person){
+        System.out.println(person);
+    }
+
+    @PutMapping("/{id}")
+    public void updatePerson(@PathVariable long id, @RequestBody Person person){
+        System.out.println(person);
+        System.out.println(id);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deletePerson(@PathVariable long id){
+        System.out.println(id);
     }
 }
