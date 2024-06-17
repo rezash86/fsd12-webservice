@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 //CTRL + ALT + L
@@ -73,8 +74,14 @@ public class PersonController {
         return null;
     }
     @GetMapping("/all")
-    public List<Person> getAll(){
-        return peopleList;
+    public List<Person> getAll(@RequestParam(required = false) Long age, @RequestParam(required = false) String fname){
+        if(age != null){
+            return peopleList.stream().filter(person -> person.getAge()> age)
+                    .filter(person -> person.getFirstName().startsWith(fname))
+                    .collect(Collectors.toList());
+        }
+
+        return this.peopleList;
     }
 
     @PostMapping("/")
