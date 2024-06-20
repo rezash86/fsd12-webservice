@@ -35,4 +35,23 @@ public class EmployeeRepository {
         //I would like to see the id of saved employee
         return jdbcTemplate.queryForObject("SELECT MAX(id) from employee_tbl", Long.class);
     }
+
+    public Employee getEmpByIdI(Long id){
+        return getEmployee(id);
+    }
+
+    public void updateEmployee(Long id, Employee emp){
+        String sql = "UPDATE employee_tbl set employee_name=? , age=? WHERE id=?";
+        jdbcTemplate.update(sql, emp.getEmployeeName(), emp.getAge(), id);
+    }
+
+    public void deleteEmp(Long id){
+        String sql = "DELETE FROM employee_tbl WHERE id=?";
+        jdbcTemplate.update(sql, id);
+    }
+
+    private Employee getEmployee(Long id) {
+        String sql = "SELECT * FROM employee_tbl where id=?";
+        return jdbcTemplate.queryForObject(sql, new EmployeeRowMapper(), id);
+    }
 }

@@ -20,4 +20,16 @@ public class EmployeeService {
     public Long saveEmployee(Employee employee){
         return repository.saveEmployee(employee);
     }
+
+    public Employee getEmployeeById(Long id){
+        return repository.getEmpByIdI(id);
+    }
+
+    public void updateEmployee(Long id, Employee emp){
+        repository.updateEmployee(id, emp);
+    }
+
+    public void deleteEmp(Long id){
+        repository.deleteEmp(id);
+    }
 }
