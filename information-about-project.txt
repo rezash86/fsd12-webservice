@@ -1,0 +1,45 @@
+1 - Next Friday will be the demo day
+2- we will have group-based project
+3- Your project will have FE (20%) and BE (80%)
+4- Tomorrow I will show you the comm between FE and BE service.
+5- I am not expecting complicated database structure.
+6- I am expecting a few tables to persist/fetch data
+7- Your project is based on a public free api existing such as weather, movie, music, gps, restaurant ....
+8- It will be a combination of a free api, database, BE and FE
+
+Group 1
+Michael
+Mohammad Javad
+Alexie
+Fei
+Qiutian
+
+Group2
+Craig
+YunTing
+Kejia
+Kirill
+
+Group3
+Dong
+Sean
+Mohamed Amine
+Evan
+
+Group4
+Médérick
+Dimitri
+Tamara
+José Alejandro
+
+Group5
+Mehmet
+Alexandre
+Konstantin
+Iana
+
+
+Groups will have ONE coordinator that will send me an email in MIO to tell me ASAP about the subject they want to work on that.
+on Friday 28th, we will have a short demo about 10 minutes about the result of the project.
+projects will be saved in a shared github repository that is private BUT I have access to that repository.
+shalchian.r@gmail.com
