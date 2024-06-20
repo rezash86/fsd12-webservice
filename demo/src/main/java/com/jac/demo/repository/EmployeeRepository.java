@@ -2,6 +2,7 @@ package com.jac.demo.repository;
 
 import com.jac.demo.model.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
@@ -15,11 +16,6 @@ public class EmployeeRepository {
 
     public List<Employee> getAllEmployee(){
         //this is the class(method) that needs to connect to database(Table) and fetch the data
-//        List<Employee> result= jdbcTemplate.query("SELECT id, employee_name, age from employee_tbl",
-//                (rs, rowNum) ->
-//                        new Employee(rs.getLong("id"),
-//                                rs.getString("employee_name"),
-//                                rs.getInt("age")));
 
         String sql = "SELECT id, employee_name, age from employee_tbl";
         List<Employee> result = jdbcTemplate.query(sql, new EmployeeRowMapper());
@@ -36,8 +32,8 @@ public class EmployeeRepository {
         return jdbcTemplate.queryForObject("SELECT MAX(id) from employee_tbl", Long.class);
     }
 
-    public Employee getEmpByIdI(Long id){
-        return getEmployee(id);
+    public Employee getEmployeeById(Long id){
+        return this.getEmployee(id);
     }
 
     public void updateEmployee(Long id, Employee emp){
@@ -51,7 +47,12 @@ public class EmployeeRepository {
     }
 
     private Employee getEmployee(Long id) {
-        String sql = "SELECT * FROM employee_tbl where id=?";
-        return jdbcTemplate.queryForObject(sql, new EmployeeRowMapper(), id);
+        try{
+            String sql = "SELECT * FROM employee_tbl where id=?";
+            return jdbcTemplate.queryForObject(sql, new EmployeeRowMapper(), id);
+        }
+        catch (EmptyResultDataAccessException exception){
+            return null;
+        }
     }
 }
