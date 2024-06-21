@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User management</title>
+  </head>
+  <body>
+    <h1>Register to our API</h1>
+    <div>
+      <div>
+        <label for="user-name">Name</label>
+        <input type="text" name="name" id="user-name" />
+      </div>
+      <div>
+        <label for="user-password">Password</label>
+        <input type="password" name="password" id="user-password" />
+      </div>
+      <div>
+        <label for="user-email">Email</label>
+        <input type="email" name="email" id="user-email" />
+      </div>
+      <div>
+        <label for="user-age">Age</label>
+        <input type="text" name="age" id="user-age" />
+      </div>
+      <button onclick="createUser()">Creating a user</button>
+      <button onclick="getUser()">Fetching 1st user</button>
+
+    </div>
+
+    <script src="script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </body>
+</html>
